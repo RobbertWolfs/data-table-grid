@@ -1,0 +1,49 @@
+<div class="table">
+  <div class="headers">
+    <div class="header">
+      <div class="cell cell--fixed">
+        <div class="header-item">Locatie</div>
+      </div>
+      <!-- <div class="cell cell--static" [style.--column-total]="headers.length">
+        <div class="header-item" *ngFor="let header of headers">
+          {{ header }}
+        </div>
+      </div> -->
+    </div>
+  </div>
+  <div class="rows">
+    <div class="row" *ngFor="let project of data.projects">
+      <div class="cell cell--fixed">
+        <div class="wrapper">
+          <strong>{{ project.number }}</strong>
+          <p>
+            {{ project.location.zipCode }} {{ project.location.city }}, {{
+            project.location.street }}
+          </p>
+          <p>
+            {{ project.responsible.firstName }} {{ project.responsible.lastName
+            }}
+          </p>
+          <p>{{ project.type }}</p>
+        </div>
+      </div>
+      <div class="cell cell--static">
+        <div class="wrapper" *ngFor="let event of project.events">
+          <div class="event" [style.--event-bg-color]="event.color">
+            <pre>{{ event.color  }}</pre>
+            <h5>
+              {{ event.name }}<br />
+              {{ event.license }}
+            </h5>
+            <div class="workers">
+              <div class="worker" *ngFor="let worker of event.workers">
+                <p>{{ worker.firstName }} {{ worker.lastName }}</p>
+                <!-- <span class="hour">{{ getHour(worker.startDate) }}</span> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

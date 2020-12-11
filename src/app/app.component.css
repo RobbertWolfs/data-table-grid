@@ -1,0 +1,180 @@
+:host {
+  --color-yellow: #ffc900;
+  --color-white: #fff;
+  --color-black: #000;
+
+  --row-bg-color: #e0e0e0;
+
+  --fixed-column-width: 200px;
+
+  --border-radius: 4px;
+
+  --box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+
+  --spacing: 10px;
+  --spacing--s: 5px;
+}
+
+/* TODO USER RESET */
+p,
+h5 {
+  margin: 5px 0;
+}
+
+.table {
+  box-shadow: var(--box-shadow);
+  max-width: 100%;
+  max-height: 90vh; /* TODO FIX WITH JS? */
+  overflow: auto;
+  position: relative;
+}
+
+.headers,
+.rows {
+  display: table;
+  width: 100%;
+}
+
+.headers {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.header {
+  background-color: var(--color-yellow);
+  display: flex;
+}
+
+.header .cell--fixed {
+  background-color: var(--color-yellow);
+  width: var(--fixed-column-width);
+}
+
+.header-item {
+  background-color: var(--yellow);
+  border-right: 5px var(--color-white) solid;
+  box-sizing: border-box;
+  padding: var(--spacing);
+}
+
+.cell--static .header-item:last-child {
+  border-right: 0;
+}
+
+.cell--fixed {
+  position: sticky;
+  z-index: 1;
+  left: 0;
+  padding-left: var(--spacing);
+  box-sizing: border-box;
+}
+
+.cell--static {
+  --column-width: 250px;
+  --column-total: 6;
+
+  box-sizing: border-box;
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: repeat(var(--column-total), var(--column-width));
+  grid-auto-flow: column dense; /* TODO willen we dit wel?? */
+  height: 100%;
+}
+
+.row {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  padding-bottom: var(--spacing--s);
+}
+
+.row:nth-child(even) {
+  --row-bg-color: #eeeeee;
+}
+
+.row .cell--static,
+.row .cell--fixed {
+  background-color: var(--row-bg-color);
+}
+
+.row .cell--static {
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--row-bg-color),
+    var(--row-bg-color) 245px,
+    var(--color-white) 245px,
+    var(--color-white) var(--column-width),
+    var(--row-bg-color) var(--column-width)
+  );
+}
+
+.table--wrapped .row .cell--static {
+  background-image: none;
+}
+
+.cell--fixed .wrapper {
+  border-right: 5px solid var(--color-white);
+}
+
+.wrapper {
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 10px;
+}
+
+.table:not(.table--wrapped) .wrapper {
+  --column-start: 1;
+  --column-end: 1;
+
+  grid-column-start: var(--column-start);
+  grid-column-end: var(--column-end);
+}
+
+.event {
+  --event-bg-color: --color-white;
+  --event-person-height: 60px;
+
+  background-color: var(--event-bg-color);
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  box-shadow: var(--border-radius);
+  display: grid;
+  grid-template-rows: auto var(--event-person-height);
+  height: 100%;
+  padding: var(--spacing);
+  text-align: center;
+}
+
+.workers {
+  --total-workers: 1;
+
+  display: grid;
+  grid-template-columns: repeat(var(--total-workers), 1fr);
+  grid-gap: 25px; /* TODO berekenen? */
+}
+
+.worker {
+  align-items: center;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: var(--spacing--s);
+}
+
+.event--worker-only .worker {
+  box-shadow: none;
+  grid-row-start: 2;
+}
+
+.hour {
+  background-color: var(--color-yellow);
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  color: var(--color-black);
+  padding: var(--spacing--s);
+}
